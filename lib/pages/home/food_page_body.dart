@@ -253,7 +253,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     top: Dimensions.height15,
                     left: Dimensions.width15,
                     right: Dimensions.width15),
-                child: const AppColumn(),
+                child: const AppColumn(text: 'Chinese Slide'),
               ),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:food_delivery/utils/dimension.dart';
 
 import '../../widgets/app_column.dart';
 import '../../widgets/app_icon.dart';
+import '../../widgets/big_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -56,10 +57,32 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
                 color: Colors.white,
               ),
-              child: const AppColumn(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const AppColumn(text: 'Chinese Slide'),
+                  SizedBox(height: Dimensions.height20),
+                  const BigText(text: 'Introduce'),
+                ],
+              ),
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: 120,
+        padding: EdgeInsets.only(
+          top: Dimensions.height30,
+          bottom: Dimensions.height30,
+          left: Dimensions.width20,
+          right: Dimensions.width20,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(Dimensions.radius20 * 2),
+            topRight: Radius.circular(Dimensions.radius20 * 2),
+          ),
+        ),
       ),
     );
   }
