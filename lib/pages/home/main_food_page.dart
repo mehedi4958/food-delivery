@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 
-import '../utils/colors.dart';
-import '../widgets/big_text.dart';
+import '../../utils/colors.dart';
+import '../../widgets/big_text.dart';
 import 'food_page_body.dart';
 
 class MainFoodPage extends StatefulWidget {
@@ -71,7 +71,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
           ),
 
           /// showing the body
-          const FoodPageBody(),
+          const Expanded(
+            child: SingleChildScrollView(
+              child: FoodPageBody(),
+            ),
+          ),
         ],
       ),
     );

@@ -2,10 +2,10 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/dimension.dart';
 
-import '../utils/colors.dart';
-import '../widgets/big_text.dart';
-import '../widgets/icon_and_text.dart';
-import '../widgets/small_text.dart';
+import '../../utils/colors.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/icon_and_text.dart';
+import '../../widgets/small_text.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -87,7 +87,92 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               )
             ],
           ),
-        )
+        ),
+
+        /// list of foods and images
+        ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: EdgeInsets.only(
+                left: Dimensions.width20,
+                right: Dimensions.width20,
+                bottom: Dimensions.height10,
+              ),
+              child: Row(
+                children: [
+                  /// image section
+                  Container(
+                    height: Dimensions.listViewImgSize,
+                    width: Dimensions.listViewImgSize,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: Colors.white38,
+                      image: const DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/images/food0.png'),
+                      ),
+                    ),
+                  ),
+
+                  /// text section
+                  Expanded(
+                    child: Container(
+                      height: Dimensions.listViewTextContSize,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(Dimensions.radius20),
+                          bottomRight: Radius.circular(Dimensions.radius20),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: Dimensions.width10,
+                          right: Dimensions.width10,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const BigText(
+                                text: 'Nutritious fruit meal in China'),
+                            SizedBox(height: Dimensions.height10),
+                            const SmallText(
+                                text: 'With chinese characteristics'),
+                            SizedBox(height: Dimensions.height10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                IconAndTextWidget(
+                                  icon: Icons.circle_sharp,
+                                  iconColor: AppColors.iconColor1,
+                                  text: 'Normal',
+                                ),
+                                IconAndTextWidget(
+                                  icon: Icons.location_pin,
+                                  iconColor: AppColors.mainColor,
+                                  text: '1.7km',
+                                ),
+                                IconAndTextWidget(
+                                  icon: Icons.access_time_filled_rounded,
+                                  iconColor: AppColors.iconColor2,
+                                  text: '32 min',
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ],
     );
   }
