@@ -41,6 +41,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        /// slider section
         Container(
           // color: Colors.redAccent,
           height: Dimensions.pageView,
@@ -52,6 +53,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             },
           ),
         ),
+
+        /// dots
         DotsIndicator(
           dotsCount: 5,
           position: _currentPageValue,
@@ -63,6 +66,28 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
         ),
+
+        /// Popular text
+        SizedBox(height: Dimensions.height30),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const BigText(text: 'Popular'),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: const BigText(text: '.', color: Colors.black26),
+              ),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: const SmallText(text: 'Food pairing'),
+              )
+            ],
+          ),
+        )
       ],
     );
   }
@@ -161,13 +186,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Dimensions.width10),
                         const SmallText(text: '4.5'),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Dimensions.width10),
                         const SmallText(text: '1287'),
-                        const SizedBox(
-                          width: 10,
-                        ),
+                        SizedBox(width: Dimensions.width10),
                         const SmallText(text: 'comments'),
                       ],
                     ),
