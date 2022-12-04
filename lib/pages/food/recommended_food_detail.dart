@@ -12,6 +12,7 @@ class RecommendedFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -65,8 +66,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     left: Dimensions.width20,
                     right: Dimensions.width20,
                   ),
-                  color: Colors.white,
-                  child: ExpandableTextWidget(
+                  child: const ExpandableTextWidget(
                     text:
                         'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
                         'jlkjaheiurwknjadjhfliawefn akweuhrndf'
@@ -164,7 +164,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: Colors.white,
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.favorite,
                     color: AppColors.mainColor,
                   ),
