@@ -5,6 +5,7 @@ import 'package:food_delivery/utils/dimension.dart';
 import '../../widgets/app_column.dart';
 import '../../widgets/app_icon.dart';
 import '../../widgets/big_text.dart';
+import '../../widgets/expandable_text_widget.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class PopularFoodDetail extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          /// background image
           Positioned(
             left: 0,
             right: 0,
@@ -29,6 +31,8 @@ class PopularFoodDetail extends StatelessWidget {
               ),
             ),
           ),
+
+          /// icon widgets
           Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -41,6 +45,8 @@ class PopularFoodDetail extends StatelessWidget {
               ],
             ),
           ),
+
+          /// introduction of food
           Positioned(
             left: 0,
             right: 0,
@@ -65,6 +71,41 @@ class PopularFoodDetail extends StatelessWidget {
                   const AppColumn(text: 'Chinese Slide'),
                   SizedBox(height: Dimensions.height20),
                   const BigText(text: 'Introduce'),
+                  SizedBox(height: Dimensions.height20),
+                  const Expanded(
+                    child: SingleChildScrollView(
+                      child: ExpandableTextWidget(
+                        text:
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a'
+                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
+                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
+                            'kjdfakea;eikndfiwef;a',
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -72,7 +113,7 @@ class PopularFoodDetail extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Container(
-        height: 120,
+        height: Dimensions.bottomBarHeight,
         padding: EdgeInsets.only(
           top: Dimensions.height30,
           bottom: Dimensions.height30,
