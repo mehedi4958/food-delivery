@@ -1,7 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/models/products_model.dart';
 import 'package:food_delivery/utils/dimension.dart';
+import 'package:get/get.dart';
 
+import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../widgets/app_column.dart';
 import '../../widgets/big_text.dart';
@@ -43,29 +47,40 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         /// slider section
-        Container(
-          // color: Colors.redAccent,
-          height: Dimensions.pageView,
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return _buildPageItem(index);
-            },
-          ),
+        GetBuilder<PopularProductController>(
+          builder: (popularProducts) {
+            return Container(
+              // color: Colors.redAccent,
+              height: Dimensions.pageView,
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: popularProducts.popularProductList.length,
+                itemBuilder: (context, index) {
+                  return _buildPageItem(
+                      index, popularProducts.popularProductList[index]);
+                },
+              ),
+            );
+          },
         ),
 
         /// dots
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
+        GetBuilder<PopularProductController>(
+          builder: (popularProducts) {
+            return DotsIndicator(
+              dotsCount: popularProducts.popularProductList.isEmpty
+                  ? 1
+                  : popularProducts.popularProductList.length,
+              position: _currentPageValue,
+              decorator: DotsDecorator(
+                activeColor: AppColors.mainColor,
+                size: const Size.square(9.0),
+                activeSize: const Size(18.0, 9.0),
+                activeShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+              ),
+            );
+          },
         ),
 
         /// Popular text
@@ -178,7 +193,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = Matrix4.identity();
     if (index == _currentPageValue.floor()) {
       var currScale = 1 - (_currentPageValue - index) * (1 - _scaleFactor);
@@ -214,9 +229,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               color: index.isEven
                   ? const Color(0xFF69c5df)
                   : const Color(0xFF9294cc),
-              image: const DecorationImage(
+              image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/images/food0.png'),
+                image: NetworkImage(
+                    '${AppConstants.BASE_URL}/uploads${popularProduct.img!}'),
               ),
             ),
           ),
@@ -253,7 +269,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     top: Dimensions.height15,
                     left: Dimensions.width15,
                     right: Dimensions.width15),
-                child: const AppColumn(text: 'Chinese Slide'),
+                child: AppColumn(text: popularProduct.name!),
               ),
             ),
           ),
