@@ -138,7 +138,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    '${AppConstants.BASE_URL}/uploads/${recommendedProducts.recommendedProductList[index].img!}'),
+                                    '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${recommendedProducts.recommendedProductList[index].img!}'),
                               ),
                             ),
                           ),
@@ -165,8 +165,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const BigText(
-                                        text: 'Nutritious fruit meal in China'),
+                                    BigText(
+                                        text: recommendedProducts
+                                            .recommendedProductList[index]
+                                            .name!),
                                     SizedBox(height: Dimensions.height10),
                                     const SmallText(
                                         text: 'With chinese characteristics'),
@@ -250,7 +252,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                    '${AppConstants.BASE_URL}/uploads/${popularProduct.img!}'),
+                    '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${popularProduct.img!}'),
               ),
             ),
           ),
