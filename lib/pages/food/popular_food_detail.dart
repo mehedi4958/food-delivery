@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:get/get.dart';
@@ -30,10 +31,12 @@ class PopularFoodDetail extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/food0.png'),
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!),
                 ),
               ),
             ),
@@ -80,41 +83,14 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppColumn(text: 'Chinese Slide'),
+                  AppColumn(text: product.name!),
                   SizedBox(height: Dimensions.height20),
-                  const BigText(text: 'Introduce'),
+                  const BigText(text: 'Introducing'),
                   SizedBox(height: Dimensions.height20),
-                  const Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                        text:
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a'
-                            'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                            'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                            'kjdfakea;eikndfiwef;a',
+                        text: product.description!,
                       ),
                     ),
                   ),
@@ -160,7 +136,7 @@ class PopularFoodDetail extends StatelessWidget {
                     color: AppColors.signColor,
                   ),
                   SizedBox(width: Dimensions.width10 / 2),
-                  BigText(text: '0'),
+                  const BigText(text: '0'),
                   SizedBox(width: Dimensions.width10 / 2),
                   const Icon(
                     Icons.add,
@@ -180,8 +156,8 @@ class PopularFoodDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,
               ),
-              child: const BigText(
-                text: '\$10 | Add to cart',
+              child: BigText(
+                text: '\$ ${product.price!}  |  Add to cart',
                 color: Colors.white,
               ),
             ),

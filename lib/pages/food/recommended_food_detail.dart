@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/big_text.dart';
@@ -9,10 +11,15 @@ import '../../widgets/app_icon.dart';
 import '../../widgets/expandable_text_widget.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  const RecommendedFoodDetail({Key? key, required this.pageId})
+      : super(key: key);
+
+  final int pageId;
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -49,7 +56,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 child: Center(
                   child: BigText(
-                    text: 'Chinese Slide',
+                    text: product.name!,
                     size: Dimensions.font26,
                   ),
                 ),
@@ -59,8 +66,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/images/food0.png',
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -74,35 +81,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                     left: Dimensions.width20,
                     right: Dimensions.width20,
                   ),
-                  child: const ExpandableTextWidget(
-                    text:
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a'
-                        'ksdjfiefha afked fijsdf lkmcsdeifj;a lsdfmeimfksd dkmcds  ksdjf;iedasdf oisdifaknefa.sdifjaoeifn la kjdhfliuweafnjsd iuewfjanca; jksduhfawe nsdjfleu jnaejrjdnf ljbaerudsa kjhsdfiaefnaefu jndfuebasdbcaakerukjdsfa'
-                        'jlkjaheiurwknjadjhfliawefn akweuhrndf'
-                        'kjdfakea;eikndfiwef;a',
+                  child: ExpandableTextWidget(
+                    text: product.description!,
                   ),
                 ),
               ],
@@ -130,7 +110,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconSize: Dimensions.iconSize24,
                 ),
                 BigText(
-                  text: '\$12.88 ' + ' X ' + ' 0',
+                  text: '\$ ${product.price!}  X  0',
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
@@ -188,8 +168,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor,
                   ),
-                  child: const BigText(
-                    text: '\$10 | Add to cart',
+                  child: BigText(
+                    text: '\$ ${product.price!}  |  Add to cart',
                     color: Colors.white,
                   ),
                 ),
