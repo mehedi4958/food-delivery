@@ -26,7 +26,7 @@ class Product {
     if (json['products'] != null) {
       _products = <ProductModel>[];
       json['products'].forEach((e) {
-        _products!.add(ProductModel.fromJson(e));
+        _products.add(ProductModel.fromJson(e));
       });
     }
   }
@@ -66,7 +66,7 @@ class ProductModel {
   String? location;
   String? createdAt;
   String? updatedAt;
-  String? typeId;
+  int? typeId;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

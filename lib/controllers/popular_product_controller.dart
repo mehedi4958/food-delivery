@@ -16,10 +16,9 @@ class PopularProductController extends GetxController {
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
-    print('print1');
 
     if (response.statusCode == 200) {
-      print('got products');
+      print(response.body);
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
       update();
