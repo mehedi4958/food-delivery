@@ -14,6 +14,23 @@ class CartController extends GetxController {
 
   Map<int, CartModel> get items => _items;
 
+  ///getters
+  int get totalItems {
+    var totalQuantity = 0;
+    _items.forEach(
+      (key, value) {
+        totalQuantity += value.quantity!;
+      },
+    );
+    return totalQuantity;
+  }
+
+  List<CartModel> get getItems {
+    return _items.entries.map((e) {
+      return e.value;
+    }).toList();
+  }
+
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
@@ -82,16 +99,5 @@ class CartController extends GetxController {
       );
     }
     return quantity;
-  }
-
-  ///getter
-  int get totalItems {
-    var totalQuantity = 0;
-    _items.forEach(
-      (key, value) {
-        totalQuantity += value.quantity!;
-      },
-    );
-    return totalQuantity;
   }
 }
