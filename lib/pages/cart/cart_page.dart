@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
@@ -8,7 +9,6 @@ import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
-import '../home/main_food_page.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => const MainFoodPage());
+                    Get.toNamed(RouteHelper.getInitial());
                   },
                   child: const AppIcon(
                     icon: Icons.home_outlined,
@@ -63,8 +63,9 @@ class CartPage extends StatelessWidget {
                 removeTop: true,
                 child: GetBuilder<CartController>(
                   builder: (cartController) {
+                    var carList = cartController.getItems;
                     return ListView.builder(
-                      itemCount: cartController.getItems.length,
+                      itemCount: carList.length,
                       itemBuilder: (context, index) {
                         return Container(
                           margin: EdgeInsets.only(top: Dimensions.height15),
@@ -131,7 +132,9 @@ class CartPage extends StatelessWidget {
                                               children: [
                                                 GestureDetector(
                                                   onTap: () {
-                                                    //popularProduct.setQuantity(false);
+                                                    cartController.addItem(
+                                                        carList[index].product!,
+                                                        -1);
                                                   },
                                                   child: const Icon(
                                                     Icons.remove,
@@ -141,15 +144,18 @@ class CartPage extends StatelessWidget {
                                                 SizedBox(
                                                     width:
                                                         Dimensions.width10 / 2),
-                                                BigText(text: '0'),
+                                                BigText(
+                                                    text:
+                                                        '${carList[index].quantity!}'),
                                                 //' ${popularProduct.inCartItems} '),
                                                 SizedBox(
                                                     width:
                                                         Dimensions.width10 / 2),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    // popularProduct
-                                                    //     .setQuantity(true);
+                                                    cartController.addItem(
+                                                        carList[index].product!,
+                                                        1);
                                                   },
                                                   child: const Icon(
                                                     Icons.add,
