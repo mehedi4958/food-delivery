@@ -31,6 +31,14 @@ class CartController extends GetxController {
     }).toList();
   }
 
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+    return total;
+  }
+
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
