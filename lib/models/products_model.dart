@@ -81,18 +81,18 @@ class ProductModel {
     typeId = json['type_id'];
   }
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = <String, dynamic>{};
-  //   data['id'] = id;
-  //   data['name'] = name;
-  //   data['description'] = description;
-  //   data['price'] = price;
-  //   data['stars'] = stars;
-  //   data['img'] = img;
-  //   data['location'] = location;
-  //   data['created_at'] = createdAt;
-  //   data['updated_at'] = updatedAt;
-  //   data['type_id'] = typeId;
-  //   return data;
-  // }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['price'] = price;
+    data['stars'] = stars;
+    data['img'] = img;
+    data['location'] = location;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['type_id'] = typeId;
+    return data;
+  }
 }

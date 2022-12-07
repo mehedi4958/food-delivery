@@ -32,18 +32,18 @@ class CartModel {
     product = ProductModel.fromJson(json['product']);
   }
 
-// Map<String, dynamic> toJson() {
-//   final Map<String, dynamic> data = <String, dynamic>{};
-//   data['id'] = id;
-//   data['name'] = name;
-//   data['description'] = description;
-//   data['price'] = price;
-//   data['stars'] = stars;
-//   data['img'] = img;
-//   data['location'] = location;
-//   data['created_at'] = createdAt;
-//   data['updated_at'] = updatedAt;
-//   data['type_id'] = typeId;
-//   return data;
-// }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['price'] = price;
+    data['img'] = img;
+    data['quantity'] = quantity;
+    data['isExist'] = isExist;
+    data['time'] = time;
+    //if (product != null) {
+    data['product'] = product!.toJson();
+    //}
+    return data;
+  }
 }
