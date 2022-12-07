@@ -1,7 +1,7 @@
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/popular_food_detail.dart';
 import 'package:food_delivery/pages/food/recommended_food_detail.dart';
-import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
@@ -21,7 +21,7 @@ class RouteHelper {
     GetPage(
       name: initial,
       page: () {
-        return const MainFoodPage();
+        return const HomePage();
       },
       transition: Transition.fadeIn,
     ),
