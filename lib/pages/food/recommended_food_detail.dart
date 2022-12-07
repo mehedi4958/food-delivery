@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
-import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
@@ -14,10 +13,12 @@ import '../../widgets/app_icon.dart';
 import '../../widgets/expandable_text_widget.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key, required this.pageId})
+  const RecommendedFoodDetail(
+      {Key? key, required this.pageId, required this.page})
       : super(key: key);
 
   final int pageId;
+  final String page;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,11 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(RouteHelper.getCartPage());
+                    if (page == 'cartPage') {
+                      Get.toNamed(RouteHelper.getCartPage());
+                    } else {
+                      Get.toNamed(RouteHelper.getInitial());
+                    }
                   },
                   child: const AppIcon(icon: Icons.clear),
                 ),
@@ -46,7 +51,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         if (controller.totalItems >= 1) {
-                          Get.to(() => const CartPage());
+                          Get.toNamed(RouteHelper.getCartPage());
                         }
                       },
                       child: Stack(
