@@ -247,6 +247,8 @@ class CartPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     //popularProduct.addItem(product);
+                    print('tapped');
+                    cartController.addToHistory();
                   },
                   child: Container(
                     padding: EdgeInsets.only(
@@ -259,7 +261,7 @@ class CartPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
                       color: AppColors.mainColor,
                     ),
-                    child: BigText(
+                    child: const BigText(
                       text: 'Checkout',
                       color: Colors.white,
                     ),

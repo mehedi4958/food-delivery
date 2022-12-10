@@ -10,7 +10,7 @@ class CartController extends GetxController {
   CartController({required this.cartRepo});
 
   final CartRepo cartRepo;
-  final Map<int, CartModel> _items = {};
+  Map<int, CartModel> _items = {};
 
   /// only for storage and sharedpreferences
   List<CartModel> storageItems = [];
@@ -126,5 +126,15 @@ class CartController extends GetxController {
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();
     return storageItems;
+  }
+
+  void addToHistory() {
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
   }
 }
