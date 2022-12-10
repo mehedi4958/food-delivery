@@ -11,6 +11,7 @@ class CartRepo {
   final SharedPreferences sharedPreferences;
 
   List<String> cart = [];
+
   void addToCartList(List<CartModel> cartList) {
     cart = [];
     /*
