@@ -49,6 +49,11 @@ class CartController extends GetxController {
     }
   }
 
+  set setItems(Map<int, CartModel> setItems) {
+    _items = {};
+    _items = setItems;
+  }
+
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
@@ -135,6 +140,10 @@ class CartController extends GetxController {
 
   List<CartModel> getCartHistoryList() {
     return cartRepo.getCartHistoryList();
+  }
+
+  void addToCartList() {
+    cartRepo.addToCartList(getItems);
   }
 
   void clear() {
