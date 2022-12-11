@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 
+import '../cart/cart_history.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -20,11 +22,7 @@ class _HomePageState extends State<HomePage> {
         child: Text('Next Page'),
       ),
     ),
-    Container(
-      child: const Center(
-        child: Text('Next Page'),
-      ),
-    ),
+    const CartHistory(),
     Container(
       child: const Center(
         child: Text('Next Page'),
