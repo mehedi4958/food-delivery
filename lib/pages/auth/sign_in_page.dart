@@ -127,7 +127,7 @@ class SignInPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => Get.to(const SignUpPage(),
+                      ..onTap = () => Get.to(() => const SignUpPage(),
                           transition: Transition.fade),
                   ),
                 ],
