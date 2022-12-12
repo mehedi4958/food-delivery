@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             return const GetMaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
-              home: SignUpPage(),
+              home: SignInPage(),
               //home: const SplashScreen(),
               //initialRoute: RouteHelper.getSplashPage(),
               //getPages: RouteHelper.routes,

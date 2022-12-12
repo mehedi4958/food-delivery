@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/base/show_custom_snackbar.dart';
+import 'package:food_delivery/models/signup_body_model.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/big_text.dart';
@@ -30,13 +31,9 @@ class SignUpPage extends StatelessWidget {
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
 
-      if (name.isEmpty) {
-        showCustomSnackBar('Type in your name', title: 'Name');
-      } else if (phone.isEmpty) {
-        showCustomSnackBar('Type in your phone number', title: 'Phone number');
-      } else if (email.isEmpty) {
+      if (email.isEmpty) {
         showCustomSnackBar('Type in your email', title: 'Email');
-      } else if (GetUtils.isEmail(email)) {
+      } else if (!GetUtils.isEmail(email)) {
         showCustomSnackBar('Type in a valid email address',
             title: 'Valid email address');
       } else if (password.isEmpty) {
@@ -44,8 +41,19 @@ class SignUpPage extends StatelessWidget {
       } else if (password.length < 6) {
         showCustomSnackBar('Password cannot be less than six characters',
             title: 'Password');
+      } else if (name.isEmpty) {
+        showCustomSnackBar('Type in your name', title: 'Name');
+      } else if (phone.isEmpty) {
+        showCustomSnackBar('Type in your phone number', title: 'Phone number');
       } else {
         showCustomSnackBar('All went well', title: 'Perfect');
+        SignUpBody signUpBody = SignUpBody(
+          email: email,
+          password: password,
+          name: name,
+          phone: phone,
+        );
+        print(signUpBody.toString());
       }
     }
 
