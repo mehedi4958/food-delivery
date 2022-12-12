@@ -90,8 +90,19 @@ class SignUpPage extends StatelessWidget {
                   color: Colors.grey[500],
                   fontSize: Dimensions.font20,
                 ),
-                recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
                 text: 'Already have an account?',
+                children: [
+                  TextSpan(
+                    text: '  Sign in',
+                    style: TextStyle(
+                      color: AppColors.mainBlackColor,
+                      fontSize: Dimensions.font20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Get.back(),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: Dimensions.screenHeight * 0.05),

@@ -74,23 +74,23 @@ class SignInPage extends StatelessWidget {
               hinText: 'Password',
               icon: Icons.password_sharp,
             ),
-            SizedBox(height: Dimensions.height20),
+            // SizedBox(height: Dimensions.height20),
 
-            Row(
-              children: [
-                Expanded(child: Container()),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      color: Colors.grey[500],
-                      fontSize: Dimensions.font20,
-                    ),
-                    text: 'Sign-in to your account',
-                  ),
-                ),
-                SizedBox(width: Dimensions.width20),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     Expanded(child: Container()),
+            //     RichText(
+            //       text: TextSpan(
+            //         style: TextStyle(
+            //           color: Colors.grey[500],
+            //           fontSize: Dimensions.font20,
+            //         ),
+            //         text: 'Sign-in to your account',
+            //       ),
+            //     ),
+            //     SizedBox(width: Dimensions.width20),
+            //   ],
+            // ),
             SizedBox(height: Dimensions.screenHeight * 0.05),
 
             /// sign in button
