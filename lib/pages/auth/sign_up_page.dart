@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/base/show_custom_snackbar.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/models/signup_body_model.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/big_text.dart';
@@ -28,10 +29,10 @@ class SignUpPage extends StatelessWidget {
     ];
 
     void registration(AuthController authController) {
-      String name = nameController.text.trim();
-      String phone = phoneController.text.trim();
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
 
       if (email.isEmpty) {
         showCustomSnackBar('Type in your email', title: 'Email');
@@ -58,7 +59,7 @@ class SignUpPage extends StatelessWidget {
 
         authController.registration(signUpBody).then((status) {
           if (status.isSuccess) {
-            print('Success Registration');
+            //Get.toNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
           }
