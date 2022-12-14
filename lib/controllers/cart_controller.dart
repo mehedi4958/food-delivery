@@ -150,4 +150,9 @@ class CartController extends GetxController {
     _items = {};
     update();
   }
+
+  void clearCartHistory() {
+    cartRepo.clearCartHistory();
+    update();
+  }
 }

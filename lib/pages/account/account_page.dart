@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/auth_controller.dart';
+import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/account_widget.dart';
 
@@ -99,7 +103,32 @@ class AccountPage extends StatelessWidget {
                         iconSize: Dimensions.iconSize24,
                         size: Dimensions.height10 * 5,
                       ),
-                      bigText: const BigText(text: 'Hasan'),
+                      bigText: const BigText(text: 'Messages'),
+                    ),
+                    SizedBox(height: Dimensions.height20),
+
+                    /// logout
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        } else {
+                          print('Logged out');
+                        }
+                      },
+                      child: AccountWidget(
+                        appIcon: AppIcon(
+                          icon: Icons.logout,
+                          backgroundColor: Colors.redAccent,
+                          iconColor: Colors.white,
+                          iconSize: Dimensions.iconSize24,
+                          size: Dimensions.height10 * 5,
+                        ),
+                        bigText: const BigText(text: 'Messages'),
+                      ),
                     ),
                     SizedBox(height: Dimensions.height20),
                   ],
