@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/base/no_data_page.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
+import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
@@ -90,9 +91,11 @@ class CartPage extends StatelessWidget {
                                                     carList[index].product!);
                                             if (popularIndex >= 0) {
                                               Get.toNamed(
-                                                  RouteHelper.getPopularFood(
-                                                      popularIndex,
-                                                      'cartPage'));
+                                                RouteHelper.getPopularFood(
+                                                  popularIndex,
+                                                  'cartPage',
+                                                ),
+                                              );
                                             } else {
                                               var recommendedIndex = Get.find<
                                                       RecommendedProductController>()
@@ -108,10 +111,13 @@ class CartPage extends StatelessWidget {
                                                   colorText: Colors.white,
                                                 );
                                               } else {
-                                                Get.toNamed(RouteHelper
-                                                    .getRecommendedFood(
-                                                        recommendedIndex,
-                                                        'cartPage'));
+                                                Get.toNamed(
+                                                  RouteHelper
+                                                      .getRecommendedFood(
+                                                    recommendedIndex,
+                                                    'cartPage',
+                                                  ),
+                                                );
                                               }
                                             }
                                           },
@@ -288,7 +294,12 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if (Get.find<AuthController>().userLoggedIn()) {
-                            cartController.addToHistory();
+                            //cartController.addToHistory();
+                            if (Get.find<LocationController>()
+                                .addressList
+                                .isEmpty) {
+                              Get.toNamed(RouteHelper.getAddressPage());
+                            }
                           } else {
                             Get.toNamed(RouteHelper.getSignInPage());
                           }

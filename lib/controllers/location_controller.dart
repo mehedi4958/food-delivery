@@ -12,13 +12,20 @@ class LocationController extends GetxController implements GetxService {
 
   final LocationRepo locationRepo;
 
-  bool _loading = false;
+  final bool _loading = false;
+  final Placemark _placeMark = Placemark();
+  final Placemark _pickedPlaceMark = Placemark();
+  final List<AddressModel> _addressList = [];
+  final List<String> _addressTypeList = ['home', 'office', 'others'];
+
+  final int _addressTypeIndex = 0;
+
   late Position _position;
   late Position _pickedPosition;
-  Placemark _placemark = Placemark();
-  Placemark _pickedPlacemark = Placemark();
-  List<AddressModel> _addressList = [];
   late List<AddressModel> _allAddressList;
-  List<String> _addressTypeList = ['home', 'office', 'others'];
-  int _addressTypeIndex = 0;
+  late Map<String, dynamic> _getAddress;
+
+  /// getters
+  List<AddressModel> get addressList => _addressList;
+  Map get getAddress => _getAddress;
 }
