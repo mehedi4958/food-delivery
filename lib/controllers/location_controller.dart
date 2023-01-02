@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:food_delivery/data/repository/location_repo.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -16,11 +18,11 @@ class LocationController extends GetxController implements GetxService {
   bool _loading = false;
   final bool _changeAddress = true;
   final bool _updateAddressData = true;
-  final Placemark _placeMark = Placemark();
-  final Placemark _pickedPlaceMark = Placemark();
+  Placemark _placeMark = Placemark();
+  Placemark _pickedPlaceMark = Placemark();
   final List<AddressModel> _addressList = [];
   final List<String> _addressTypeList = ['home', 'office', 'others'];
-  final int _addressTypeIndex = 0;
+  int _addressTypeIndex = 0;
 
   late Position _position;
   late Position _pickedPosition;
@@ -36,6 +38,8 @@ class LocationController extends GetxController implements GetxService {
   Position get pickedPosition => _pickedPosition;
   Placemark get placeMark => _placeMark;
   Placemark get pickedPlaceMark => _pickedPlaceMark;
+  List<String> get addressTypeList => _addressTypeList;
+  int get addressTypeIndex => _addressTypeIndex;
 
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
@@ -76,6 +80,9 @@ class LocationController extends GetxController implements GetxService {
               position.target.longitude,
             ),
           );
+          fromAddress
+              ? _placeMark = Placemark(name: address)
+              : _pickedPlaceMark = Placemark(name: address);
         }
       } catch (e) {
         print(e);
@@ -86,13 +93,32 @@ class LocationController extends GetxController implements GetxService {
   Future<String> getAddressFromGeocode(LatLng latLng) async {
     String address = 'Unknown Location Found';
     Response response = await locationRepo.getAddressFromGeocode(latLng);
-    print(response.status.code);
     if (response.body['status'] == 'OK') {
       address = response.body['results'][0]['formatted_address'].toString();
-      print('PRINTING ADDRESS: $address');
+      // print('PRINTING ADDRESS: $address');
     } else {
       print('Error getting the google api');
     }
     return address;
+  }
+
+  AddressModel getUserAddress() {
+    late AddressModel addressModel;
+    /*
+     * converting to map using jsonDecode
+     */
+    _getAddress = jsonDecode(locationRepo.getUserAddress());
+    try {
+      addressModel =
+          AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
+    } catch (e) {
+      print(e);
+    }
+    return addressModel;
+  }
+
+  void setAddressTypeIndex(int index) {
+    _addressTypeIndex = index;
+    update();
   }
 }
