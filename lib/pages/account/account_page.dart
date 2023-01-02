@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/base/custom_loader.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
@@ -95,17 +96,50 @@ class AccountPage extends StatelessWidget {
                                   SizedBox(height: Dimensions.height20),
 
                                   /// address
-                                  AccountWidget(
-                                    appIcon: AppIcon(
-                                      icon: Icons.location_on,
-                                      backgroundColor: AppColors.yellowColor,
-                                      iconColor: Colors.white,
-                                      iconSize: Dimensions.iconSize24,
-                                      size: Dimensions.height10 * 5,
-                                    ),
-                                    bigText: const BigText(
-                                        text: 'Fill in you address'),
-                                  ),
+                                  GetBuilder<LocationController>(
+                                      builder: (locationController) {
+                                    if (userLoggedIn &&
+                                        locationController
+                                            .addressList.isEmpty) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddressPage());
+                                        },
+                                        child: AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize: Dimensions.iconSize24,
+                                            size: Dimensions.height10 * 5,
+                                          ),
+                                          bigText: const BigText(
+                                              text: 'Fill in your address'),
+                                        ),
+                                      );
+                                    } else {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddressPage());
+                                        },
+                                        child: AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize: Dimensions.iconSize24,
+                                            size: Dimensions.height10 * 5,
+                                          ),
+                                          bigText: const BigText(
+                                              text: 'Your Address'),
+                                        ),
+                                      );
+                                    }
+                                  }),
                                   SizedBox(height: Dimensions.height20),
 
                                   /// message
@@ -131,6 +165,8 @@ class AccountPage extends StatelessWidget {
                                         Get.find<CartController>().clear();
                                         Get.find<CartController>()
                                             .clearCartHistory();
+                                        Get.find<LocationController>()
+                                            .clearAddressList();
                                         Get.offNamed(
                                             RouteHelper.getSignInPage());
                                       } else {}

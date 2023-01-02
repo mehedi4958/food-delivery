@@ -88,7 +88,7 @@ class LocationController extends GetxController implements GetxService {
               : _pickedPlaceMark = Placemark(name: address);
         }
       } catch (e) {
-        print(e);
+        //print(e);
       }
     }
   }
@@ -100,8 +100,9 @@ class LocationController extends GetxController implements GetxService {
       address = response.body['results'][0]['formatted_address'].toString();
       // print('PRINTING ADDRESS: $address');
     } else {
-      print('Error getting the google api');
+      //print('Error getting the google api');
     }
+    update();
     return address;
   }
 
@@ -115,7 +116,7 @@ class LocationController extends GetxController implements GetxService {
       addressModel =
           AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
     } catch (e) {
-      print(e);
+      //print(e);
     }
     return addressModel;
   }
@@ -136,7 +137,7 @@ class LocationController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, message);
       await saveUserAddress(addressModel);
     } else {
-      print('Could not save the address');
+      //print('Could not save the address');
       responseModel = ResponseModel(false, response.statusText!);
     }
     update();
@@ -163,5 +164,11 @@ class LocationController extends GetxController implements GetxService {
   Future<bool> saveUserAddress(AddressModel addressModel) async {
     String userAddress = jsonEncode(addressModel.toJson());
     return await locationRepo.saveUserAddress(userAddress);
+  }
+
+  void clearAddressList() {
+    _addressList = [];
+    _allAddressList = [];
+    update();
   }
 }
