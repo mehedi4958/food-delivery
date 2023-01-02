@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/controllers/user_controller.dart';
+import 'package:food_delivery/models/address_model.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/widgets/app_text_field.dart';
 import 'package:food_delivery/widgets/big_text.dart';
@@ -234,7 +235,28 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        //controller.addItem(product);
+                        AddressModel addressModel = AddressModel(
+                          addressType: locationController.addressTypeList[
+                              locationController.addressTypeIndex],
+                          contactPersonName: _contactPersonNameController.text,
+                          contactPersonNumber:
+                              _contactPersonNumberController.text,
+                          address: _addressController.text,
+                          latitude:
+                              locationController.position.latitude.toString(),
+                          longitude:
+                              locationController.position.longitude.toString(),
+                        );
+                        locationController.addAddress(addressModel).then(
+                          (response) {
+                            if (response.isSuccess) {
+                              Get.back();
+                              Get.snackbar('Address', 'Added Successfully');
+                            } else {
+                              Get.snackbar('Address', 'Could not save address');
+                            }
+                          },
+                        );
                       },
                       child: Container(
                         padding: EdgeInsets.only(
