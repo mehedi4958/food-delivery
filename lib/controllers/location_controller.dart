@@ -21,7 +21,7 @@ class LocationController extends GetxController implements GetxService {
   final bool _updateAddressData = true;
   Placemark _placeMark = Placemark();
   Placemark _pickedPlaceMark = Placemark();
-  final List<AddressModel> _addressList = [];
+  List<AddressModel> _addressList = [];
   final List<String> _addressTypeList = ['home', 'office', 'others'];
   int _addressTypeIndex = 0;
 
@@ -41,6 +41,8 @@ class LocationController extends GetxController implements GetxService {
   Placemark get pickedPlaceMark => _pickedPlaceMark;
   List<String> get addressTypeList => _addressTypeList;
   int get addressTypeIndex => _addressTypeIndex;
+  GoogleMapController get mapController => _mapController;
+  List<AddressModel> get allAddressList => _allAddressList;
 
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
@@ -129,14 +131,37 @@ class LocationController extends GetxController implements GetxService {
     Response response = await locationRepo.addAddress(addressModel);
     ResponseModel responseModel;
     if (response.statusCode == 200) {
-      String message = response.body('message');
+      await getAddressList();
+      String message = response.body['message'];
       responseModel = ResponseModel(true, message);
-      //saveUserAddress()
+      await saveUserAddress(addressModel);
     } else {
       print('Could not save the address');
       responseModel = ResponseModel(false, response.statusText!);
     }
     update();
     return responseModel;
+  }
+
+  Future<void> getAddressList() async {
+    Response response = await locationRepo.getAllAddress();
+    if (response.statusCode == 200) {
+      _addressList = [];
+      _allAddressList = [];
+
+      response.body.forEach((address) {
+        _addressList.add(AddressModel.fromJson(address));
+        _allAddressList.add(AddressModel.fromJson(address));
+      });
+    } else {
+      _addressList = [];
+      _allAddressList = [];
+    }
+    update();
+  }
+
+  Future<bool> saveUserAddress(AddressModel addressModel) async {
+    String userAddress = jsonEncode(addressModel.toJson());
+    return await locationRepo.saveUserAddress(userAddress);
   }
 }

@@ -104,6 +104,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             compassEnabled: false,
                             indoorViewEnabled: true,
                             mapToolbarEnabled: false,
+                            myLocationButtonEnabled: true,
                             onCameraIdle: () {
                               locationController.updatePosition(
                                   _cameraPosition, true);

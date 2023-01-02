@@ -27,4 +27,14 @@ class LocationRepo {
     return await apiClient.postData(
         AppConstants.ADD_USER_ADDRESS, addressModel.toJson());
   }
+
+  Future<Response> getAllAddress() async {
+    return await apiClient.getData(AppConstants.ADDRESS_LIST_URI);
+  }
+
+  Future<bool> saveUserAddress(String userAddress) async {
+    apiClient.updateHeader(sharedPreferences.getString(AppConstants.TOKEN)!);
+    return await sharedPreferences.setString(
+        AppConstants.USER_ADDRESS, userAddress);
+  }
 }
