@@ -48,6 +48,9 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar('Type in your name', title: 'Name');
       } else if (phone.isEmpty) {
         showCustomSnackBar('Type in your phone number', title: 'Phone number');
+      } else if (!GetUtils.isPhoneNumber(phone)) {
+        showCustomSnackBar('Type in a valid phone number',
+            title: 'Valid phone number');
       } else {
         showCustomSnackBar('All went well', title: 'Perfect');
         SignUpBody signUpBody = SignUpBody(
