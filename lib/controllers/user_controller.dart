@@ -20,7 +20,7 @@ class UserController extends GetxController implements GetxService {
   ///
   Future<ResponseModel> getUserInfo() async {
     _isLoading = true;
-    update();
+    //update();
     Response response = await userRepo.getUserInfo();
 
     late ResponseModel responseModel;

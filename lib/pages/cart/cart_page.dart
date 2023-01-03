@@ -13,6 +13,7 @@ import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
+import '../../controllers/location_controller.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -293,18 +294,18 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if (Get.find<AuthController>().userLoggedIn()) {
-                            cartController.addToHistory();
+                            //cartController.addToHistory();
+                            // }
+                            if (Get.find<LocationController>()
+                                .addressList
+                                .isEmpty) {
+                              Get.toNamed(RouteHelper.getAddressPage());
+                            } else {
+                              Get.offNamed(RouteHelper.getInitial());
+                            }
+                          } else {
+                            Get.toNamed(RouteHelper.getSignInPage());
                           }
-                          //   if (Get.find<LocationController>()
-                          //       .addressList
-                          //       .isEmpty) {
-                          //     Get.toNamed(RouteHelper.getAddressPage());
-                          //   } else {
-                          //     Get.offNamed(RouteHelper.getInitial());
-                          //   }
-                          // } else {
-                          //   Get.toNamed(RouteHelper.getSignInPage());
-                          // }
                         },
                         child: Container(
                           padding: EdgeInsets.only(

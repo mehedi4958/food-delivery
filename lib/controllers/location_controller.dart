@@ -18,7 +18,7 @@ class LocationController extends GetxController implements GetxService {
 
   bool _loading = false;
   final bool _changeAddress = true;
-  final bool _updateAddressData = true;
+  bool _updateAddressData = true;
   Placemark _placeMark = Placemark();
   Placemark _pickedPlaceMark = Placemark();
   List<AddressModel> _addressList = [];
@@ -90,6 +90,10 @@ class LocationController extends GetxController implements GetxService {
       } catch (e) {
         //print(e);
       }
+      _loading = false;
+      update();
+    } else {
+      _updateAddressData = true;
     }
   }
 
@@ -164,6 +168,17 @@ class LocationController extends GetxController implements GetxService {
   Future<bool> saveUserAddress(AddressModel addressModel) async {
     String userAddress = jsonEncode(addressModel.toJson());
     return await locationRepo.saveUserAddress(userAddress);
+  }
+
+  String getUserAddressFromLocalStorage() {
+    return locationRepo.getUserAddress();
+  }
+
+  void setAddAddressData() {
+    _position = _pickedPosition;
+    _placeMark = _pickedPlaceMark;
+    _updateAddressData = false;
+    update();
   }
 
   void clearAddressList() {
